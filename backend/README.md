@@ -1,101 +1,293 @@
-# CashPilot AI - Python FastAPI Backend API
+# 💼 CashPilot AI – AI-Powered CFO Copilot for SMEs
 
-This is the modular FastAPI backend for **CashPilot AI**, a Google Gemma-powered AI CFO Copilot for SMEs.
+> **An AI-powered financial decision support system for Small and Medium Enterprises (SMEs), built using Google Gemma.**
 
----
-
-## 🛠️ Tech Stack & Dependencies
-
-- **FastAPI** & **Uvicorn** for high-performance async routing
-- **SQLAlchemy ORM** & SQLite (PostgreSQL compatible)
-- **JWT tokens** & Passlib bcrypt for authentication security
-- **Google Generative AI SDK** (linked to Google AI Studio)
-- **ReportLab** for professional board-ready PDF generation
-- **Pandas** & **openpyxl** for CSV/Excel ledger sheets extraction
-- **pdfplumber** & **PyMuPDF** (fitz) + **pytesseract** for OCR text parsing
+CashPilot AI helps business owners transform financial data into actionable insights by forecasting cash flow, detecting liquidity risks, prioritizing invoice payments, and simulating business decisions before they are made.
 
 ---
 
-## 📁 Modular Directory Structure
+## 🚀 Features
 
+- 📊 AI Financial Dashboard
+- 💰 Cash Flow Forecasting
+- ⚠️ Liquidity Risk Detection
+- 📄 Invoice Prioritization
+- 💳 Payment Optimization
+- 🤖 AI Decision Simulator
+- 💬 AI Financial Assistant (Powered by Google Gemma)
+- 📑 Executive Financial Report Generation
+- 📂 Upload PDF, CSV, Excel & Images
+- 🔍 OCR Support for Scanned Documents
+
+---
+
+## 🎯 Problem Statement
+
+Small and Medium Enterprises often lack access to financial experts. Existing accounting software records transactions but rarely helps business owners understand future risks or make strategic decisions.
+
+CashPilot AI acts as a virtual CFO that analyzes financial data and provides explainable, AI-powered recommendations using **Google Gemma**.
+
+---
+
+## 🏗️ System Architecture
+
+```text
+Financial Documents
+(PDF, CSV, Excel, Images)
+            │
+            ▼
+Document Parsing & OCR
+            │
+            ▼
+Financial Analysis Engine
+(Cash Flow, Liquidity,
+Business Health Score,
+Forecasting)
+            │
+            ▼
+Structured Financial JSON
+            │
+            ▼
+Google Gemma
+(Reasoning,
+Recommendations,
+Decision Simulation,
+AI Chat)
+            │
+            ▼
+Dashboard
+Reports
+AI Chat
+Decision Simulator
 ```
+
+---
+
+## 🤖 Google Gemma Integration
+
+Google Gemma is the **core reasoning engine** behind CashPilot AI.
+
+Gemma is responsible for:
+
+- Financial Risk Analysis
+- Liquidity Analysis
+- Invoice Prioritization
+- Payment Recommendations
+- Executive Summary Generation
+- Business Health Explanation
+- AI Chat Assistant
+- Decision Simulator Reasoning
+- Financial Recommendations
+
+The backend performs deterministic financial calculations, while Google Gemma explains the results and generates intelligent recommendations.
+
+---
+
+## 📊 Key Modules
+
+### 📁 Financial Document Upload
+
+Supports:
+
+- PDF
+- CSV
+- Excel
+- Images
+- Bank Statements
+- Expense Reports
+- Invoices
+
+---
+
+### 💰 Financial Analysis Engine
+
+Computes:
+
+- Cash Flow
+- Revenue
+- Expenses
+- Liquidity
+- Working Capital
+- Outstanding Invoices
+- Business Health Score
+- Financial Risks
+
+---
+
+### 🤖 AI Decision Simulator
+
+Simulate business decisions before implementing them.
+
+Supported scenarios:
+
+- Hire Employees
+- Purchase Equipment
+- Increase Inventory
+- Marketing Investment
+- Delay Supplier Payments
+- Custom Business Decisions
+
+Gemma evaluates:
+
+- Risk Level
+- Financial Impact
+- Business Impact
+- Confidence Score
+- AI Recommendation
+
+---
+
+### 💬 AI Financial Assistant
+
+Ask questions like:
+
+- Why is my cash flow decreasing?
+- Can I hire more employees?
+- Which invoice should I pay first?
+- How can I improve liquidity?
+
+Google Gemma answers using your financial data.
+
+---
+
+### 📑 Executive Reports
+
+Generate professional reports containing:
+
+- Executive Summary
+- Revenue Analysis
+- Expense Analysis
+- Cash Flow Forecast
+- Liquidity Analysis
+- Business Health Score
+- AI Recommendations
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+- React
+- Tailwind CSS
+
+### Backend
+
+- FastAPI
+- SQLAlchemy
+- Pydantic
+
+### Database
+
+- PostgreSQL
+- SQLite (Development)
+
+### AI
+
+- Google Gemma
+
+### Document Processing
+
+- Pandas
+- pdfplumber
+- PyMuPDF
+- Tesseract OCR
+
+### Report Generation
+
+- ReportLab
+
+---
+
+## 📂 Project Structure
+
+```text
 backend/
+│
 ├── app/
-│   ├── api/             # API Routers (Auth, Dashboard, OCR Ingestion, Simulator, Chat, Reports)
-│   ├── core/            # Config variables, security, and exceptions handlers
-│   ├── database/        # Database session and get_db dependencies providers
-│   ├── models/          # SQLAlchemy Database Models mapping tables
-│   ├── schemas/         # Pydantic schemas validating request/response parameters
-│   └── services/        # Decoupled business logic (Gemma prompts, OCR extractors, PDFs generators)
-├── generated_reports/   # Stored ReportLab operating summaries
-├── uploads/             # Raw ingested CSV/PDF ledger documents
-├── requirements.txt     # Python dependencies list
-├── .env.example         # System variables configuration sample
-└── README.md            # Startup instructions
+│   ├── api/
+│   ├── auth/
+│   ├── models/
+│   ├── schemas/
+│   ├── services/
+│   ├── financial_engine/
+│   ├── gemma/
+│   ├── reports/
+│   └── utils/
+│
+├── uploads/
+├── generated_reports/
+└── main.py
 ```
 
 ---
 
-## 🚀 Getting Started
+## ⚙️ Installation
 
-### 1. Configure System Environment
-Copy `.env.example` to `.env` and fill in your details (especially the Google Gemini API Key):
+Clone the repository:
+
 ```bash
-cp .env.example .env
+git clone https://github.com/your-username/cashpilot-ai.git
+cd cashpilot-ai
 ```
 
-### 2. Setup Local Environment
-Ensure you are using Python 3.12:
+Install dependencies:
+
 ```bash
-# Create python venv virtual environment
-python3 -m venv venv
-
-# Activate virtual environment
-source venv/bin/activate
-
-# Install package dependencies
 pip install -r requirements.txt
 ```
 
-### 3. Launch Development Server
-```bash
-# Run FastAPI with uvicorn reloader
-python3 -m uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
+Configure environment variables:
+
+```env
+GOOGLE_API_KEY=YOUR_GOOGLE_API_KEY
+DATABASE_URL=sqlite:///./cashpilot.db
+JWT_SECRET=your-secret-key
 ```
 
-FastAPI will automatically:
-- Create the local SQLite database (`cashpilot.db`).
-- Compile database models tables structure.
-- Host the Swagger documentation console at `http://127.0.0.1:8000/docs`.
+Run the backend:
+
+```bash
+uvicorn app.main:app --reload
+```
+
+Open Swagger API:
+
+```
+http://localhost:8000/docs
+```
 
 ---
 
-## 🔒 API Endpoints Index
+## 🎯 Future Scope
 
-### 👤 Authentication
-- `POST /api/auth/register` - Create user profile + company record.
-- `POST /api/auth/login` - Obtain JWT access tokens.
-- `GET /api/auth/me` - Retrieve current verified profile.
+- Tally Integration
+- Zoho Books Integration
+- QuickBooks Integration
+- Real-Time Bank Sync
+- Predictive Budget Planning
+- Voice-Based Financial Assistant
+- Multi-Company Support
+- Industry-Specific Financial Benchmarking
 
-### 📊 Dashboard Metrics
-- `GET /api/dashboard` - Get health stats, cash buffers, recent transactions, and Gemma summaries.
-- `GET /api/dashboard/cashflow` - Get monthly inflows vs outflows.
-- `GET /api/dashboard/forecast` - Retrieve 6-month baseline and simulated runway trends.
-- `GET /api/dashboard/risk` - Get active cash flow risk alerts.
-- `GET /api/dashboard/health-score` - Retrieve overall and category-specific business health indexes.
-- `GET /api/dashboard/recommendations` - Get cash optimization suggestions.
+---
 
-### 📂 Document Vault
-- `POST /api/documents/upload` - Ingest CSV, Excel, PDF, or image files, run OCR, and recalculate financials.
-- `GET /api/documents` - List all uploaded company files.
-- `DELETE /api/documents/{id}` - Delete document record and purge file from disk.
+## 👥 Team
 
-### 🎮 Flagship decision simulator
-- `POST /api/simulate` - Input investment amounts and monthly yields to view Gemma recommendation cards.
+**Matrix Minds**
 
-### 💬 Conversational Chatbot
-- `POST /api/chat` - Chat with Gemma about runway, payroll buffers, and outstanding billing priorities.
+- Harshad Magdum
+- Pruthvi
+- Sushant
 
-### 📄 Board PDF Reports
-- `POST /api/reports/generate-report` - Compile and stream a downloadable PDF operating report.
-- `GET /api/reports` - List previously compiled PDF assets.
+---
+
+## 🏆 Hackathon
+
+Built for **Build with Gemma AI Sprint** using **Google Gemma** as the primary reasoning engine for AI-powered financial decision support.
+
+---
+
+## 📄 License
+
+This project was developed for the **Build with Gemma AI Sprint Hackathon**.
